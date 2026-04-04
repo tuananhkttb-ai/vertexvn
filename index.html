@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERTEX - Tấm Bảo Vệ Pin Xe Điện VinFast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        
+        * {
+            font-family: 'Roboto', system-ui, sans-serif;
+        }
+        
+        .header-bg {
+            background: linear-gradient(to right, #1f2937, #111827);
+        }
+        
+        .vertex-red {
+            background: linear-gradient(135deg, #ff3d00, #c8102e);
+        }
+        
+        .product-card {
+            transition: transform 0.2s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .form-input {
+            border: 2px solid #e2e8f0;
+        }
+        
+        .form-input:focus {
+            border-color: #c8102e;
+            outline: none;
+        }
+
+        /* Cải thiện responsive */
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+            .section-padding {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+        }
+        
+        /* Hiệu ứng mượt mà hơn trên mobile */
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 smooth-scroll">
+
+    <!-- HEADER -->
+    <header class="header-bg text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+            <img src="assets/logo.jpg" alt="Logo Vertex Việt Nam" width="280" height="auto">
+            <div class="flex items-center gap-3">
+                <div>
+                  <h1 class="text-2xl md:text-3xl font-bold tracking-tighter">VERTEX</h1>
+                    <p class="text-xs text-orange-300 -mt-1 font-medium">VIỆT NAM</p>
+                </div>
+                <div class="ml-1 md:ml-2 text-base md:text-lg font-semibold hidden sm:block">TẤM BẢO VỆ PIN</div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium">
+                <a href="#san-pham" class="hover:text-orange-400 transition-colors">SẢN PHẨM</a>
+                <a href="#bang-gia" class="hover:text-orange-400 transition-colors">BẢNG GIÁ</a>
+                <a href="#thong-so" class="hover:text-orange-400 transition-colors">THÔNG SỐ</a>
+                <a href="#lien-he" class="hover:text-orange-400 transition-colors">LIÊN HỆ</a>
+            </nav>
+
+            <!-- Hotline + Social -->
+            <div class="flex items-center gap-3">
+                <!-- Hotline -->
+                <div class="flex items-center gap-2 bg-white text-slate-900 px-4 md:px-5 py-2 rounded-3xl font-semibold shadow-md text-sm md:text-base">
+                    <i class="fa-solid fa-phone text-red-600"></i>
+                    <a href="tel:0974177599" class="font-semibold">0974.177.599</a>
+                </div>
+
+                <!-- Social Icons -->
+                <a href="https://www.facebook.com/vertex.vni" 
+                   target="_blank"
+                   class="hidden sm:flex items-center justify-center w-9 h-9 bg-white text-[#1877F2] rounded-2xl hover:scale-110 transition-transform">
+                    <i class="fab fa-facebook-f text-xl"></i>
+                </a>
+                <a href="https://zalo.me/0974177599" 
+                   target="_blank"
+                   class="flex items-center justify-center w-9 h-9 bg-white text-[#0068FF] rounded-2xl hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-comment-dots text-xl"></i>
+                    <span class="ml-0.5 text-xs font-bold">Z</span>
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-3xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-900 px-4 py-4 border-t border-slate-700">
+            <a href="#san-pham" onclick="toggleMobileMenu()" class="block py-4 text-white font-medium border-b border-slate-700 flex items-center gap-3">
+                <i class="fa-solid fa-car"></i> SẢN PHẨM
+            </a>
+            <a href="#bang-gia" onclick="toggleMobileMenu()" class="block py-4 text-white font-medium border-b border-slate-700 flex items-center gap-3">
+                <i class="fa-solid fa-tags"></i> BẢNG GIÁ
+            </a>
+            <a href="#thong-so" onclick="toggleMobileMenu()" class="block py-4 text-white font-medium border-b border-slate-700 flex items-center gap-3">
+                <i class="fa-solid fa-info-circle"></i> THÔNG SỐ KỸ THUẬT
+            </a>
+            <a href="#lien-he" onclick="toggleMobileMenu()" class="block py-4 text-white font-medium flex items-center gap-3">
+                <i class="fa-solid fa-phone"></i> TƯ VẤN NGAY
+            </a>
+            
+            <!-- Mobile social -->
+            <div class="flex justify-center gap-6 mt-6">
+                <a href="https://www.facebook.com/vertex.vni" target="_blank" class="flex flex-col items-center text-white">
+                    <i class="fab fa-facebook-f text-3xl mb-1"></i>
+                    <span class="text-xs">Facebook</span>
+                </a>
+                <a href="https://zalo.me/0974177599" target="_blank" class="flex flex-col items-center text-white">
+                    <i class="fa-solid fa-comment-dots text-3xl mb-1"></i>
+                    <span class="text-xs">Zalo</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="bg-white relative section-padding">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-16 grid md:grid-cols-2 gap-10 items-center">
+            <div class="space-y-6">
+                <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-1.5 rounded-3xl text-sm font-semibold">
+                    <span class="w-3 h-3 bg-orange-500 rounded-full animate-pulse"></span>
+                    HÀNG SẴN - BẢO HÀNH 1 ĐỔI 1
+                </div>
+                
+                <h1 class="hero-title text-5xl md:text-6xl font-bold leading-tight text-slate-900">
+                    TẤM BẢO VỆ PIN<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">XE ĐIỆN VERTEX</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-slate-600 max-w-lg">
+                    Bảo vệ pin VinFast VF3 • VF5 • VF6 • VF7 • VF8 • VF9 • Limo Green<br>
+                    Thép CT3 cao cấp • Sơn tĩnh điện • Lắp đặt nhanh trong 15 phút
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <a href="#lien-he" 
+                       class="vertex-red text-white px-8 py-4 rounded-3xl font-semibold text-lg flex items-center justify-center gap-3 hover:shadow-xl transition-all w-full sm:w-auto">
+                        <i class="fa-solid fa-phone"></i>
+                        LIÊN HỆ TƯ VẤN NGAY
+                    </a>
+                    <div class="text-sm text-slate-500 text-center sm:text-left">
+                        Hotline<br>
+                        <a href="tel:0974177599" class="text-2xl font-semibold text-slate-900 hover:text-red-600">0974.177.599</a>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap items-center gap-6 text-sm">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-green-600 text-2xl"></i>
+                        <div>Không ảnh hưởng bảo hành xe &amp; pin</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-truck-fast text-green-600 text-2xl"></i>
+                        <div>Giao hàng toàn quốc</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hero image -->
+            <div class="relative">
+                <img src="assets/vf6.jpg" 
+                     alt="Tấm bảo vệ pin VF6 - VERTEX" 
+                     class="w-full rounded-3xl shadow-2xl border border-slate-200">
+                <div class="absolute top-6 right-6 vertex-red text-white px-5 py-2 rounded-2xl font-bold text-2xl md:text-3xl shadow-lg flex items-center gap-2">
+                    VF6 <i class="fa-solid fa-car"></i>
+                </div>
+                <div class="absolute -bottom-4 -left-4 bg-white shadow-xl rounded-2xl px-5 py-3 md:px-6 md:py-4 flex items-center gap-3">
+                    <div class="text-green-600 text-4xl"><i class="fa-solid fa-check-circle"></i></div>
+                    <div>
+                        <div class="font-semibold text-base">Đã lắp cho hơn 500 xe</div>
+                        <div class="text-slate-500 text-sm">Khách hàng VinFast toàn quốc</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SẢN PHẨM -->
+    <section id="san-pham" class="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16 section-padding">
+        <div class="text-center mb-10">
+            <h2 class="text-4xl font-bold mb-2">Dành cho tất cả dòng xe VinFast</h2>
+            <p class="text-slate-600 text-lg">Chọn mẫu phù hợp với xe của bạn</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 md:gap-6">
+            <!-- VF3 -->
+            <div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <div class="h-44 md:h-48 bg-slate-100 flex items-center justify-center p-4">
+                    <img src="assets/vf3.jpg" alt="VERTEX VF3" class="max-h-40 md:max-h-44 w-auto rounded-2xl">
+                </div>
+                <div class="p-5 md:p-6">
+                    <div class="flex justify-between items-baseline">
+                        <div class="text-2xl font-bold">VF3</div>
+                        <div class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-2xl">1 tấm/bộ</div>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">14kg • Phù hợp VF3</p>
+                    <a href="#bang-gia" class="mt-4 block text-center text-red-600 font-medium">Xem giá →</a>
+                </div>
+            </div>
+            
+            <!-- VF5 -->
+            <div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <div class="h-44 md:h-48 bg-slate-100 flex items-center justify-center p-4">
+                    <img src="assets/vf5.jpg" alt="VERTEX VF5" class="max-h-40 md:max-h-44 w-auto rounded-2xl">
+                </div>
+                <div class="p-5 md:p-6">
+                    <div class="flex justify-between items-baseline">
+                        <div class="text-2xl font-bold">VF5</div>
+                        <div class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-2xl">2 tấm/bộ</div>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">22kg • Phù hợp VF5</p>
+                    <a href="#bang-gia" class="mt-4 block text-center text-red-600 font-medium">Xem giá →</a>
+                </div>
+            </div>
+            
+            <!-- VF6 -->
+            <div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <div class="h-44 md:h-48 bg-slate-100 flex items-center justify-center p-4">
+                    <img src="assets/vf6.jpg" alt="VERTEX VF6" class="max-h-40 md:max-h-44 w-auto rounded-2xl">
+                </div>
+                <div class="p-5 md:p-6">
+                    <div class="flex justify-between items-baseline">
+                        <div class="text-2xl font-bold">VF6</div>
+                        <div class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-2xl">2 tấm/bộ</div>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">31kg • Phù hợp VF6</p>
+                    <a href="#bang-gia" class="mt-4 block text-center text-red-600 font-medium">Xem giá →</a>
+                </div>
+            </div>
+            
+            <!-- VF7 -->
+            <div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <div class="h-44 md:h-48 bg-slate-100 flex items-center justify-center p-4">
+                    <img src="assets/vf7.jpg" alt="VERTEX VF7" class="max-h-40 md:max-h-44 w-auto rounded-2xl">
+                </div>
+                <div class="p-5 md:p-6">
+                    <div class="flex justify-between items-baseline">
+                        <div class="text-2xl font-bold">VF7</div>
+                        <div class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-2xl">2 tấm/bộ</div>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">33kg • Phù hợp VF7</p>
+                    <a href="#bang-gia" class="mt-4 block text-center text-red-600 font-medium">Xem giá →</a>
+                </div>
+            </div>
+            
+            <!-- VF8 -->
+            <div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <div class="h-44 md:h-48 bg-slate-100 flex items-center justify-center p-4">
+                    <img src="assets/vf8.jpg" alt="VERTEX VF8" class="max-h-40 md:max-h-44 w-auto rounded-2xl">
+                </div>
+                <div class="p-5 md:p-6">
+                    <div class="flex justify-between items-baseline">
+                        <div class="text-2xl font-bold">VF8</div>
+                        <div class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-2xl">2 tấm/bộ</div>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">35kg • Phù hợp VF8</p>
+                    <a href="#bang-gia" class="mt-4 block text-center text-red-600 font-medium">Xem giá →</a>
+                </div>
+            </div>
+
+            <!-- VF9 - SẢN PHẨM MỚI -->
+            <div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <div class="h-44 md:h-48 bg-slate-100 flex items-center justify-center p-4">
+                    <img src="assets/vf9.jpg" alt="VERTEX VF9" class="max-h-40 md:max-h-44 w-auto rounded-2xl">
+                </div>
+                <div class="p-5 md:p-6">
+                    <div class="flex justify-between items-baseline">
+                        <div class="text-2xl font-bold">VF9</div>
+                        <div class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-2xl">2 tấm/bộ</div>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">40kg • Phù hợp VF9</p>
+                    <a href="#bang-gia" class="mt-4 block text-center text-red-600 font-medium">Xem giá →</a>
+                </div>
+            </div>
+            
+            <!-- Limo Green -->
+            <div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <div class="h-44 md:h-48 bg-slate-100 flex items-center justify-center p-4">
+                    <img src="assets/limo.jpg" alt="VERTEX Limo Green" class="max-h-40 md:max-h-44 w-auto rounded-2xl">
+                </div>
+                <div class="p-5 md:p-6">
+                    <div class="flex justify-between items-baseline">
+                        <div class="text-2xl font-bold">Limo Green</div>
+                        <div class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-2xl">1 tấm/bộ</div>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">22kg • Phù hợp Limo Green</p>
+                    <a href="#bang-gia" class="mt-4 block text-center text-red-600 font-medium">Xem giá →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THÔNG SỐ KỸ THUẬT -->
+    <section id="thong-so" class="bg-slate-900 text-white py-12 md:py-16 section-padding">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="grid md:grid-cols-2 gap-10 md:gap-12">
+                <div>
+                    <h2 class="text-4xl font-bold mb-8">THÔNG TIN SẢN PHẨM</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-orange-400 font-semibold text-xl mb-4">VẬT LIỆU</h3>
+                            <ul class="space-y-3 text-slate-300">
+                                <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1"></i> Thép CT3 cao cấp - Sơn tĩnh điện màu đen</li>
+                                <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1"></i> Kích thước: 1420 × 920 mm</li>
+                                <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1"></i> Đầy đủ phụ kiện + ốc vít</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-orange-400 font-semibold text-xl mb-4">ĐẶC ĐIỂM NỔI BẬT</h3>
+                            <ul class="grid grid-cols-2 gap-4 text-slate-300">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-shield-halved text-xl text-orange-400"></i> Ốp sóng 7mm, viền dày 2.5mm</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-shield-halved text-xl text-orange-400"></i> Lớp xốp chống va đập 3mm</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-shield-halved text-xl text-orange-400"></i> Phản xạ nhiệt tốt</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-shield-halved text-xl text-orange-400"></i> Dễ lắp đặt - Không khoan cắt xe</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-shield-halved text-xl text-orange-400"></i> Không ảnh hưởng bảo hành</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-shield-halved text-xl text-orange-400"></i> Hàn Laser + CNC hiện đại</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20">
+                    <h3 class="font-semibold text-xl mb-6">HÌNH ẢNH THỰC TẾ SẢN PHẨM</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="assets/vf3.jpg" alt="VF3" class="rounded-2xl">
+                        <img src="assets/vf6.jpg" alt="VF6" class="rounded-2xl">
+                        <img src="assets/vf8.jpg" alt="VF8" class="rounded-2xl">
+                        <img src="assets/vf7.jpg" alt="VF7" class="rounded-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BẢNG GIÁ -->
+    <section id="bang-gia" class="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16 section-padding">
+        <div class="text-center mb-10">
+            <h2 class="text-4xl font-bold">BẢNG GIÁ CHIẾT KHẤU</h2>
+            <p class="text-slate-600 mt-2">Tấm bảo vệ pin xe điện VERTEX (Giá bán lẻ cho khách)</p>
+        </div>
+        
+        <div class="overflow-x-auto rounded-3xl border border-slate-200 shadow-sm bg-white">
+            <table class="w-full min-w-[1000px]">
+                <thead>
+                    <tr class="bg-gradient-to-r from-orange-600 to-red-600 text-white">
+                        <th class="py-6 px-6 md:px-8 text-left font-semibold">DÒNG SẢN PHẨM CHO XE</th>
+                        <th class="py-6 px-4 text-center">VF3</th>
+                        <th class="py-6 px-4 text-center">VF5</th>
+                        <th class="py-6 px-4 text-center">VF6</th>
+                        <th class="py-6 px-4 text-center">VF7</th>
+                        <th class="py-6 px-4 text-center">VF8</th>
+                        <th class="py-6 px-4 text-center">VF9</th>
+                        <th class="py-6 px-4 text-center">LIMO GREEN</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm divide-y">
+                    <!-- Quy cách -->
+                    <tr>
+                        <td class="py-5 px-6 md:px-8 font-medium">QUY CÁCH</td>
+                        <td class="text-center">1 TẤM/BỘ</td>
+                        <td class="text-center">2 TẤM/BỘ</td>
+                        <td class="text-center">2 TẤM/BỘ</td>
+                        <td class="text-center">2 TẤM/BỘ</td>
+                        <td class="text-center">2 TẤM/BỘ</td>
+                        <td class="text-center">2 TẤM/BỘ</td>
+                        <td class="text-center">1 TẤM/BỘ</td>
+                    </tr>
+                    <!-- Khối lượng -->
+                    <tr>
+                        <td class="py-5 px-6 md:px-8 font-medium">KHỐI LƯỢNG</td>
+                        <td class="text-center">14KG</td>
+                        <td class="text-center">22KG</td>
+                        <td class="text-center">31KG</td>
+                        <td class="text-center">33KG</td>
+                        <td class="text-center">35KG</td>
+                        <td class="text-center">40KG</td>
+                        <td class="text-center">22KG</td>
+                    </tr>
+                    <!-- GIÁ BÁN LẺ CHO KHÁCH -->
+                    <tr class="bg-orange-50 font-semibold text-lg">
+                        <td class="py-5 px-6 md:px-8">GIÁ BÁN LẺ CHO KHÁCH</td>
+                        <td class="text-center text-red-600">2.300.000 ₫</td>
+                        <td class="text-center text-red-600">2.750.000 ₫</td>
+                        <td class="text-center text-red-600">2.950.000 ₫</td>
+                        <td class="text-center text-red-600">3.850.000 ₫</td>
+                        <td class="text-center text-red-600">4.950.000 ₫</td>
+                        <td class="text-center text-red-600">6.500.000 ₫</td>
+                        <td class="text-center text-red-600">3.600.000 ₫</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Dòng mới: Gara & cộng tác viên -->
+        <div class="mt-8 text-center">
+            <div class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-100 to-red-100 text-orange-700 px-8 py-4 rounded-3xl font-semibold text-base md:text-lg shadow-sm">
+                <i class="fa-solid fa-store text-2xl"></i>
+                Các gara ô tô và cộng tác viên liên hệ trực tiếp để được giá tốt nhất!
+            </div>
+        </div>
+        
+        <div class="mt-8 text-xs text-slate-500 max-w-2xl mx-auto text-center space-y-2">
+            <p>• Giá chưa bao gồm VAT (hoá đơn + 10%)</p>
+            <p>• Giá chưa bao gồm phí vận chuyển</p>
+            <p>• Bảo hành 1 đổi 1 nếu lỗi nhà sản xuất</p>
+            <p>• Hỗ trợ pass khách lẻ khu vực</p>
+        </div>
+    </section>
+
+    <!-- FORM LIÊN HỆ -->
+    <section id="lien-he" class="bg-white py-12 md:py-16 border-t">
+        <div class="max-w-2xl mx-auto px-4 md:px-6">
+            <div class="bg-slate-900 text-white rounded-3xl p-8 md:p-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">Bạn đang quan tâm mẫu nào?</h2>
+                <p class="text-center text-orange-300 mb-8">Để lại số điện thoại - Chúng tôi gọi ngay trong 5 phút</p>
+                
+                <form id="contactForm" class="space-y-6" onsubmit="handleSubmit(event)">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Họ và tên</label>
+                        <input type="text" id="name" class="form-input w-full px-6 py-4 rounded-3xl bg-white text-slate-900" placeholder="Nguyễn Văn A" required>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Số điện thoại</label>
+                            <input type="tel" id="phone" class="form-input w-full px-6 py-4 rounded-3xl bg-white text-slate-900" placeholder="0974 177 599" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Mẫu xe</label>
+                            <select id="model" class="form-input w-full px-6 py-4 rounded-3xl bg-white text-slate-900">
+                                <option value="">Chọn mẫu xe</option>
+                                <option value="VF3">VF3</option>
+                                <option value="VF5">VF5</option>
+                                <option value="VF6">VF6</option>
+                                <option value="VF7">VF7</option>
+                                <option value="VF8">VF8</option>
+                                <option value="VF9">VF9</option>
+                                <option value="Limo Green">Limo Green</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full vertex-red py-5 text-white font-semibold text-xl rounded-3xl flex items-center justify-center gap-3 hover:shadow-2xl">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        GỬI YÊU CẦU TƯ VẤN
+                    </button>
+                    
+                    <p class="text-center text-xs text-slate-400">Hotline hỗ trợ: 0974.177.599</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 grid md:grid-cols-3 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="vertex-red text-white w-10 h-10 rounded-2xl flex items-center justify-center text-3xl font-bold">V</div>
+                    <div class="text-2xl font-bold">VERTEX VIỆT NAM</div>
+                </div>
+                <p class="text-slate-400">Tấm bảo vệ pin xe điện cao cấp dành riêng cho VinFast</p>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-4">LIÊN HỆ NHANH</h4>
+                <p class="flex items-center gap-3 mb-3">
+                    <i class="fa-solid fa-phone"></i> 
+                    <a href="tel:0974177599" class="hover:text-orange-400">0974.177.599</a>
+                </p>
+                <p class="flex items-center gap-3 mb-3">
+                    <i class="fa-solid fa-envelope"></i> 
+                    <a href="mailto:vietnamvertex@gmail.com" class="hover:text-orange-400">vietnamvertex@gmail.com</a>
+                </p>
+                
+                <!-- Social icons in footer -->
+                <div class="flex items-center gap-6 mt-6">
+                    <a href="https://www.facebook.com/vertex.vni" 
+                       target="_blank"
+                       class="flex items-center gap-2 hover:text-orange-400">
+                        <i class="fab fa-facebook-f text-3xl"></i>
+                        <span class="font-medium">Facebook</span>
+                    </a>
+                    <a href="https://zalo.me/0974177599" 
+                       target="_blank"
+                       class="flex items-center gap-2 hover:text-orange-400">
+                        <i class="fa-solid fa-comment-dots text-3xl"></i>
+                        <span class="font-medium">Zalo</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-4">CHÍNH SÁCH</h4>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li>Bảo hành 1 đổi 1</li>
+                    <li>Giao hàng toàn quốc trong 48h</li>
+                    <li>Hỗ trợ lắp đặt miễn phí tại gara</li>
+                    <li>Không ảnh hưởng bảo hành xe VinFast</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="text-center text-xs text-slate-500 mt-12 border-t border-slate-800 pt-6">
+            © 2026 VERTEX VIỆT NAM - Sản phẩm chính hãng - All Rights Reserved
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu')
+            menu.classList.toggle('hidden')
+        }
+        
+        function handleSubmit(e) {
+            e.preventDefault()
+            const name = document.getElementById('name').value
+            const phone = document.getElementById('phone').value
+            const model = document.getElementById('model').value || 'Chưa chọn'
+            
+            alert(`✅ Cảm ơn ${name}!\nSố điện thoại: ${phone}\nMẫu quan tâm: ${model}\n\nNhân viên VERTEX sẽ gọi ngay cho bạn trong ít phút tới!`)
+            e.target.reset()
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('%c✅ Trang web VERTEX đã được cập nhật bảng giá mới (thêm VF9)!', 'color:#c8102e; font-weight:bold;')
+        })
+    </script>
+</body>
+</html>
