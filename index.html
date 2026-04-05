@@ -538,15 +538,41 @@
             menu.classList.toggle('hidden')
         }
         
-        function handleSubmit(e) {
-            e.preventDefault()
-            const name = document.getElementById('name').value
-            const phone = document.getElementById('phone').value
-            const model = document.getElementById('model').value || 'Chưa chọn'
-            
-            alert(`✅ Cảm ơn ${name}!\nSố điện thoại: ${phone}\nMẫu quan tâm: ${model}\n\nNhân viên VERTEX sẽ gọi ngay cho bạn trong ít phút tới!`)
-            e.target.reset()
-            window.scrollTo({ top: 0, behavior: 'smooth' })
+       async function handleSubmit(e) {
+
+  e.preventDefault()
+
+  const name = document.getElementById("name").value
+  const phone = document.getElementById("phone").value
+  const model = document.getElementById("model").value || "Chưa chọn"
+
+  const message = `
+🔥 KHÁCH HÀNG MỚI - VERTEX
+
+👤 Tên: ${name}
+📞 SĐT: ${phone}
+🚗 Xe: ${model}
+
+Nguồn: Website Vertex
+`
+
+  const telegramToken = "8464117960:AAGDsOgJ9ngQJiweZADev7k4A2a5GUBlhjk"
+  const chatId = "CHAT_ID_GROUP"
+
+  await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message
+    })
+  })
+
+  alert("✅ Đăng ký thành công! Vertex sẽ liên hệ ngay.")
+
+  e.target.reset()
         }
         
         document.addEventListener('DOMContentLoaded', () => {
